@@ -1,4 +1,5 @@
 name: Sync to Hugging Face hub
+
 on:
   push:
     branches: [main]
@@ -7,6 +8,7 @@ on:
 jobs:
   sync-to-hub:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
         with:
@@ -14,10 +16,10 @@ jobs:
 
       - name: Add remote 
         env:
-          HF: ${{ secrets.HF }}
+          HF: ${{ secrets.HG }}
         run: git remote add space https://__token__:${HF}@huggingface.co/spaces/syedaeisha/demo
 
       - name: Push to hub
         env:
-          HF: ${{ secrets.HF }}
+          HF: ${{ secrets.HG }}
         run: git push --force https://__token__:${HF}@huggingface.co/spaces/syedaeisha/demo main
